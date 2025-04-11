@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #ff00ff, #00c3ff, #ff6600);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+        .register-container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6),
+                        0 0 60px rgba(0, 255, 255, 0.3),
+                        0 0 100px rgba(0, 255, 255, 0.2);
+            text-align: center;
+            width: 350px;
+            backdrop-filter: blur(10px);
+            animation: neon-effect 1.5s infinite alternate;
+        }
+        @keyframes neon-effect {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 255, 255, 0.6),
+                            0 0 30px rgba(0, 255, 255, 0.3),
+                            0 0 50px rgba(0, 255, 255, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.8),
+                            0 0 60px rgba(0, 255, 255, 0.4),
+                            0 0 100px rgba(0, 255, 255, 0.3);
+            }
+        }
+        .register-container h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        .form-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-size: 1.1em;
+            color: #fff;
+            display: block;
+            margin-bottom: 8px;
+        }
+        form input {
+            display: block;
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            transition: 0.3s ease;
+        }
+        form input:focus {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px #00f0ff;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            color: #fff;
+            background: linear-gradient(90deg, #6a00ff, #c200fb);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            box-shadow: 0 0 10px #9c00ff, 0 0 30px #00fe7f;
+            transform: scale(1.03);
+        }
+        .error {
+            color: red;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Create Your Account</h2>
+        
+        <!-- Display form errors -->
+        {% if form.errors %}
+            <div class="error">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- Registration Form -->
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- Username Field -->
+            <div class="form-group">
+                <label for="username">Username</label>
+                {{ form.username }}
+            </div>
+            
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                {{ form.email }}
+            </div>
+            
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password1">Password</label>
+                {{ form.password1 }}
+            </div>
+            
+            <!-- Confirm Password Field -->
+            <div class="form-group">
+                <label for="password2">Confirm Password</label>
+                {{ form.password2 }}
+            </div>
+
+            <!-- Staff Checkbox -->
+            <div class="form-group">
+                <label for="is_staff">Register as Admin</label>
+                {{ form.is_staff }}
+            </div>
+
+            
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>

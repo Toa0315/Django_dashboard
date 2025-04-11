@@ -1,0 +1,141 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Neon Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body.dashboard-body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1f0036, #270062, #4e00a8);
+            color: #fff;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 220px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .sidebar-header {
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 20px 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 1em;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00ffff;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .header h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .card.pink {
+            border-left: 5px solid #ff4ecd;
+        }
+
+        .card.blue {
+            border-left: 5px solid #00eaff;
+        }
+
+        .card.purple {
+            border-left: 5px solid #9c6bff;
+        }
+
+        .chart-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+
+<aside class="sidebar">
+    <div class="sidebar-header">⚡ Neon Admin</div>
+    <ul class="nav-links">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Users</a></li>
+        <li><a href="#">Authorization</a></li>
+        <li><a href="#">Reports</a></li>
+    </ul>
+</aside>
+
+<main class="main-content">
+    <header class="header">
+        <h2>Admins Dashboard</h2>
+    </header>
+
+    <section class="cards">
+        <div class="card pink">
+            <h3>Authorization</h3>
+            <p>$125.00</p>
+        </div>
+        <div class="card blue">
+            <h3>User Management</h3>
+            <p>87 Active</p>
+        </div>
+        <div class="card purple">
+            <h3>Payments</h3>
+            <p>$1,253.40</p>
+        </div>
+    </section>
+
+    <section class="chart-section">
+        <canvas id="myChart" width="400" height="200"></canvas>
+    </section>
+</main>
+
+<script src="{% static 'js/charts.js' %}"></script>
+</body>
+</html>

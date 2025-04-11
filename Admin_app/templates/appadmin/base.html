@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Neon Admin</title>
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1f0036, #270062, #4e00a8);
+            color: #fff;
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 220px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px 20px;
+        }
+        .sidebar-header {
+            font-size: 1.6em;
+            margin-bottom: 30px;
+        }
+        .nav-links {
+            list-style: none;
+            padding: 0;
+        }
+        .nav-links li {
+            margin: 20px 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 1em;
+        }
+        .nav-links a:hover {
+            color: #00ffff;
+        }
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        th {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">⚡ Neon Admin</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'custom_admin_dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'users_page' %}">Users</a></li>
+            <li><a href="{% url 'authorization_page' %}">Authorization</a></li>
+            <li><a href="{% url 'reports_page' %}">Reports</a></li>
+        </ul>
+    </aside>
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

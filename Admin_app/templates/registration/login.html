@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        /* Include any styles you want for the login page here */
+        body.login-body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(50, 0, 100, 0.7), rgba(0, 0, 0, 0.8)),
+                        linear-gradient(135deg, #ff00ff, #00c3ff, #ff6600);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6),
+                        0 0 60px rgba(0, 255, 255, 0.3),
+                        0 0 100px rgba(0, 255, 255, 0.2);
+            text-align: center;
+            width: 350px;
+            backdrop-filter: blur(10px);
+            animation: neon-effect 1.5s infinite alternate;
+        }
+
+        @keyframes neon-effect {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 255, 255, 0.6),
+                            0 0 30px rgba(0, 255, 255, 0.3),
+                            0 0 50px rgba(0, 255, 255, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.8),
+                            0 0 60px rgba(0, 255, 255, 0.4),
+                            0 0 100px rgba(0, 255, 255, 0.3);
+            }
+        }
+
+        .login-container h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 1.1em;
+            color: #fff;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        form input {
+            display: block;
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            transition: 0.3s ease;
+        }
+
+        form input:focus {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px #00f0ff;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            color: #fff;
+            background: linear-gradient(90deg, #6a00ff, #c200fb);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            box-shadow: 0 0 10px #9c00ff, 0 0 30px #00fe7f;
+            transform: scale(1.03);
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <h2>Welcome Back</h2>
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- Username Field -->
+            <div class="form-group">
+                <label for="id_username">Username</label>
+                {{ form.username }}
+            </div>
+            
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="id_password">Password</label>
+                {{ form.password }}
+            </div>
+
+            {% if error %}
+                <div class="error-message">
+                    <p>{{ error }}</p>  <!-- Display error message if invalid credentials -->
+                </div>
+            {% endif %}
+
+            <button type="submit">Login</button>
+        </form>
+        
+        <div style="margin-top: 15px;">
+            <a href="{% url 'register' %}" style="color: #fff; text-decoration: underline;">Don't have an account? Register here</a>
+        </div>
+    </div>
+</body>
+</html>
