@@ -3,18 +3,21 @@ A web-based admin dashboard built with Django. Users can register as either a re
 Admin users gain access to a full-featured dashboard with revenue tracking, user and authorization management, and reporting tools.
 no requirements are needed in this project.
 
-step 1 after the run server:
+step 1 run server:
+by using exact code "python manage.py runserver" you are able to run it.
+
+step 2 after running:
 Click on Register.
 Choose whether to register as a regular user or an admin during signup.
 ![Screenshot 2025-04-11 090515](https://github.com/user-attachments/assets/9b77369a-a15d-4a34-9173-87432050d54f)
 ![Screenshot 2025-04-11 090530](https://github.com/user-attachments/assets/ecd609e4-6f74-4e98-ac47-685449645588)
 
-step 2:
+step 3:
 Login using your email/username and password.
 If you're an admin, you will be redirected to the Admin Dashboard.
 If you're a regular user, you will be taken to a user-friendly homepage or dashboard.
 
-step 3:
+step 4:
 When logged in as an admin, you will see a custom dashboard with:
 Revenue Graph
 - A visual chart showing revenue or earnings data.
